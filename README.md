@@ -266,6 +266,14 @@ El proyecto está dividido en fases incrementales. Cada fase entrega valor funci
 | **Fase 5 — Panel admin (mini-CRM)** | 🚧 Pendiente | Dashboard con métricas, gestión de vehículos (0km y usados), gestión de promociones, gestión de financiación, leads (mini-CRM con asignación a asesores), test drives, configuración del sitio (contacto, redes, colores, contenido del home). |
 | **Fase 6 — Funcionalidades avanzadas** | 🚧 Pendiente | Comparador de vehículos lado a lado, simulador de cuotas interactivo, notificaciones por email, integración con WhatsApp Business API, analytics de visitas, sitemap y SEO avanzado. |
 | **Fase 7 — Producción** | 🚧 Pendiente | Optimización de rendimiento (imágenes, caching, ISR), accesibilidad WCAG, migración a PostgreSQL, deploy a Vercel, monitoreo y logs. |
+| **Fase 8 — PWA / Mobile** | 🚧 Pendiente | Progressive Web App con service workers, instalación en mobile, offline mode para catálogo, notificaciones push. |
+| **Fase 9 — Multi-concesionaria** | 🚧 Pendiente | Soporte para múltiples sucursales, gestión por ubicación, inventario distribuido, geolocalización de vehículos cercanos. |
+| **Fase 10 — Pagos y financiación** | 🚧 Pendiente | Integración con pasarelas de pago (MercadoPago, Stripe), simulador de cuotas avanzado, aprobación online, contratos digitales. |
+| **Fase 11 — IA y automatización** | 🚧 Pendiente | Chatbot con IA para consultas, recomendaciones personalizadas de vehículos, scoring de leads, respuestas automáticas por WhatsApp. |
+| **Fase 12 — Marketing y CRM avanzado** | 🚧 Pendiente | Email marketing automatizado, campañas segmentadas, funnel de conversión, integración con HubSpot/Salesforce, remarketing. |
+| **Fase 13 — Analytics y reporting** | 🚧 Pendiente | Dashboard de métricas en tiempo real, reportes de ventas, análisis de tráfico, heatmaps, exportación de datos (CSV, PDF). |
+| **Fase 14 — API pública e integraciones** | 🚧 Pendiente | REST/GraphQL API pública, webhooks, integración con portales (MercadoLibre, Zonaprop), sincronización con sistemas de gestión. |
+| **Fase 15 — Internacionalización** | 🚧 Pendiente | Soporte multi-idioma (es/en/pt), monedas múltiples, adaptación regional de contenido, SEO internacional (hreflang). |
 
 **Estado actual:** El proyecto está en la **Fase 4 completada**. Las fases 5, 6 y 7 están pendientes de desarrollo.
 
