@@ -86,6 +86,55 @@ npm run dev
 
 Abrir http://localhost:3000 — Panel: http://localhost:3000/admin
 
+## Desarrollo local
+
+### 1. Clonar el repositorio
+
+```bash
+git clone https://github.com/Marianorio/ToyotaHomu.git
+cd ToyotaHomu
+```
+
+### 2. Instalar dependencias
+
+```bash
+npm install
+```
+
+### 3. Configurar variables de entorno
+
+```bash
+cp .env.example .env
+```
+
+Editá `.env` con tus valores (ver `.env.example` para referencia). Lo esencial:
+- `DATABASE_URL` — SQLite por defecto (`file:./dev.db`).
+- `AUTH_SECRET` — generá una con `npx auth secret`.
+- `NEXT_PUBLIC_SITE_URL` — URL del sitio (local: `http://localhost:3000`).
+- `NEXT_PUBLIC_DEMO_MODE=true` — activa insignia DEMO.
+
+### 4. Base de datos y seed
+
+```bash
+# Generar el cliente de Prisma
+npm run db:generate
+
+# Aplicar migraciones
+npm run db:migrate
+
+# Cargar datos demo (vehículos, usados, leads, etc.)
+npm run db:seed
+```
+
+### 5. Iniciar el servidor de desarrollo
+
+```bash
+npm run dev
+```
+
+Abrí **http://localhost:3000** para ver el sitio.
+Panel admin: **http://localhost:3000/admin** (usuario: `admin@demo.local`, contraseña: `admin123`).
+
 ## Lint y build
 
 ```bash
@@ -203,6 +252,22 @@ Basado en tokens nativos de Tailwind (`p-*`, `gap-*`, `space-y-*`, `mt-*`, etc.)
 - **CTAs**: todo componente con acción tiene una jerarquía visual clara (primary > secondary > ghost).
 - **Responsive**: mobile-first; breakpoints Tailwind default (`sm`, `md`, `lg`, `xl`).
 - **No exceder ~300-400 líneas por archivo**; refactorizar si crece.
+
+## Fases de planificación
+
+El proyecto está dividido en fases incrementales. Cada fase entrega valor funcional completo antes de pasar a la siguiente.
+
+| Fase | Estado | Descripción |
+|------|--------|-------------|
+| **Fase 1 — Fundación** | ✅ Completada | Setup del proyecto, design system, layout base (navbar, footer), esquema de base de datos Prisma, autenticación con Auth.js, variables de entorno. |
+| **Fase 2 — Catálogo de vehículos** | ✅ Completada | CRUD de vehículos (0km), categorías, cards con badges, páginas de detalle, filtros por categoría/combustible/transmisión, ordenamiento, galería de imágenes. |
+| **Fase 3 — Páginas públicas** | ✅ Completada | Home completa (hero, quick actions, featured vehicles, financing preview, promotions, comparison CTA, after-sales, trade-in, test drive, concessionaire, location, final CTA), página de contacto, página de cotización, design system público. |
+| **Fase 4 — Vehículos usados** | ✅ Completada | Sección de usados con hero, beneficios de confianza, filtros por marca/año, cards con datos de kilometraje y estado, páginas de detalle con galería, especificaciones y CTAs. |
+| **Fase 5 — Panel admin (mini-CRM)** | 🚧 Pendiente | Dashboard con métricas, gestión de vehículos (0km y usados), gestión de promociones, gestión de financiación, leads (mini-CRM con asignación a asesores), test drives, configuración del sitio (contacto, redes, colores, contenido del home). |
+| **Fase 6 — Funcionalidades avanzadas** | 🚧 Pendiente | Comparador de vehículos lado a lado, simulador de cuotas interactivo, notificaciones por email, integración con WhatsApp Business API, analytics de visitas, sitemap y SEO avanzado. |
+| **Fase 7 — Producción** | 🚧 Pendiente | Optimización de rendimiento (imágenes, caching, ISR), accesibilidad WCAG, migración a PostgreSQL, deploy a Vercel, monitoreo y logs. |
+
+**Estado actual:** El proyecto está en la **Fase 4 completada**. Las fases 5, 6 y 7 están pendientes de desarrollo.
 
 ## Arquitectura y decisiones
 
