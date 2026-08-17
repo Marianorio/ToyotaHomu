@@ -16,6 +16,9 @@ export const metadata = {
   title: "Vehículos",
   description:
     "Explorá la gama de vehículos Toyota en Formosa: autos, SUVs, pick-ups, híbridos y más.",
+  alternates: {
+    canonical: "/vehiculos",
+  },
 };
 
 export default async function VehiculosPage({

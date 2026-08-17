@@ -20,6 +20,9 @@ export const metadata = {
   title: "Usados",
   description:
     "Vehículos usados certificados Toyota en Formosa. Calidad, garantía y confianza en cada unidad.",
+  alternates: {
+    canonical: "/usados",
+  },
 };
 
 const TRUST_BENEFITS = [

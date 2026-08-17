@@ -6,6 +6,9 @@ export const metadata = {
   title: "Cotizar",
   description:
     "Solicitanos una cotización para el Toyota que más te interese.",
+  alternates: {
+    canonical: "/cotizar",
+  },
 };
 
 export default function CotizarPage() {

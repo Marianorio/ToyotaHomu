@@ -15,11 +15,16 @@ import { Concessionaire } from "@/components/home/concessionaire";
 import { Location } from "@/components/home/location";
 import { FinalCTA } from "@/components/home/final-cta";
 import { SectionDivider } from "@/components/ui/section";
+import { JsonLd } from "@/components/ui/json-ld";
+import { SITE_URL, absoluteImage } from "@/lib/site";
 
 export const metadata = {
   title: "Toyota en Formosa | Concesionaria",
   description:
     "Concesionaria Toyota Formosa: vehículos 0 km, financiación, test drive, postventa y atención personalizada. Sitio de demostración.",
+  alternates: {
+    canonical: "/",
+  },
 };
 
 export default async function HomePage() {
@@ -60,6 +65,26 @@ export default async function HomePage() {
 
   return (
     <>
+      {/* Datos estructurados: concesionaria */}
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "AutoDealer",
+          name: settings?.businessName || "Concesionaria Toyota Formosa",
+          url: SITE_URL,
+          image: absoluteImage(settings?.logoUrl) || `${SITE_URL}/img/toyotaLogo.webp`,
+          telephone: settings?.phone,
+          email: settings?.email,
+          address: settings?.address,
+          openingHours: settings?.hours,
+          sameAs: [
+            settings?.instagram,
+            settings?.facebook,
+            settings?.tiktok,
+          ].filter(Boolean) as string[],
+        }}
+      />
+
       {/* Hero */}
       <Hero
         title={home?.heroTitle || "Tu próximo Toyota está en Formosa."}

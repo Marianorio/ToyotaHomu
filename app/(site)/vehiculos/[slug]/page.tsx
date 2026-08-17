@@ -17,7 +17,9 @@ import {
 import Link from "next/link";
 import { VehicleCard } from "@/components/vehicles/vehicle-card";
 import { CompareButton } from "@/components/vehicles/compare-button";
+import { JsonLd } from "@/components/ui/json-ld";
 import { cn } from "@/lib/utils";
+import { absoluteUrl, absoluteImage } from "@/lib/site";
 
 type VehicleDetailPageProps = {
   params: Promise<{ slug: string }>;
@@ -39,12 +41,17 @@ export async function generateMetadata({ params }: VehicleDetailPageProps) {
     description:
       vehicle.shortDescription ||
       `${vehicle.brand} ${vehicle.model} disponible en Toyota Formosa. ${vehicle.category?.name || ""} con ${vehicle.transmission || ""} transmisión.`,
+    alternates: {
+      canonical: `/vehiculos/${vehicle.slug}`,
+    },
     openGraph: {
       title: `${vehicle.brand} ${vehicle.model}`,
       description:
         vehicle.shortDescription ||
         `${vehicle.brand} ${vehicle.model} en Toyota Formosa`,
-      images: vehicle.mainImage ? [{ url: vehicle.mainImage }] : [],
+      images: vehicle.mainImage
+        ? [{ url: absoluteImage(vehicle.mainImage) ?? absoluteUrl(`/vehiculos/${vehicle.slug}`) }]
+        : [],
     },
   };
 }
@@ -103,6 +110,33 @@ export default async function VehicleDetailPage({
 
   return (
     <div className="pb-16">
+      {/* Datos estructurados: Producto */}
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Product",
+          name: `${vehicle.brand} ${vehicle.model}`,
+          image: vehicle.mainImage
+            ? [absoluteImage(vehicle.mainImage)]
+            : undefined,
+          description:
+            vehicle.shortDescription ||
+            vehicle.description ||
+            `${vehicle.brand} ${vehicle.model} disponible en Toyota Formosa.`,
+          brand: { "@type": "Brand", name: vehicle.brand },
+          category: vehicle.category?.name,
+          offers: {
+            "@type": "Offer",
+            priceCurrency: vehicle.currency || "ARS",
+            price: vehicle.price?.toString(),
+            availability: vehicle.isAvailable
+              ? "https://schema.org/InStock"
+              : "https://schema.org/OutOfStock",
+            url: absoluteUrl(`/vehiculos/${vehicle.slug}`),
+          },
+        }}
+      />
+
       <Container className="py-6">
         {/* Breadcrumbs */}
         <Breadcrumbs

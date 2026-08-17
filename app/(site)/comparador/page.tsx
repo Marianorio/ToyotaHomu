@@ -18,6 +18,9 @@ export const metadata = {
   title: "Comparador de vehículos",
   description:
     "Compará hasta 3 vehículos Toyota lado a lado: precio, motor, potencia, consumo y equipamiento.",
+  alternates: {
+    canonical: "/comparador",
+  },
 };
 
 const MAX_COMPARE = 3;

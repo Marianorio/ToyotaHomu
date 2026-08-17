@@ -14,6 +14,9 @@ export const metadata = {
   title: "Financiación",
   description:
     "Planes de financiación flexibles y simulador de cuotas interactivo para tu próximo Toyota en Formosa.",
+  alternates: {
+    canonical: "/financiacion",
+  },
 };
 
 export const dynamic = "force-dynamic";

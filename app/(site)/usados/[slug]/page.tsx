@@ -7,8 +7,10 @@ import { Container } from "@/components/ui/container";
 import { buttonVariants } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { VehicleImage } from "@/components/vehicles/vehicle-image";
+import { JsonLd } from "@/components/ui/json-ld";
 import { formatARS } from "@/lib/format";
 import { generateWhatsAppUrl } from "@/lib/whatsapp";
+import { absoluteUrl, absoluteImage } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 type UsedVehicleDetailProps = {
@@ -17,7 +19,10 @@ type UsedVehicleDetailProps = {
 
 export async function generateMetadata({ params }: UsedVehicleDetailProps) {
   const { slug } = await params;
-  const vehicle = await prisma.usedVehicle.findUnique({ where: { slug } });
+  const vehicle = await prisma.usedVehicle.findUnique({
+    where: { slug },
+    include: { images: { orderBy: { order: "asc" } } },
+  });
 
   if (!vehicle) {
     return { title: "Vehículo no encontrado" };
@@ -26,6 +31,18 @@ export async function generateMetadata({ params }: UsedVehicleDetailProps) {
   return {
     title: `${vehicle.brand} ${vehicle.model} ${vehicle.year ?? ""} | Usados`,
     description: vehicle.description ?? `Vehículo usado ${vehicle.brand} ${vehicle.model} en Formosa.`,
+    alternates: {
+      canonical: `/usados/${vehicle.slug}`,
+    },
+    openGraph: {
+      title: `${vehicle.brand} ${vehicle.model} ${vehicle.year ?? ""}`,
+      description:
+        vehicle.description ??
+        `Vehículo usado ${vehicle.brand} ${vehicle.model} en Formosa`,
+      images: vehicle.images[0]
+        ? [{ url: absoluteImage(vehicle.images[0].url) ?? absoluteUrl(`/usados/${vehicle.slug}`) }]
+        : [],
+    },
   };
 }
 
@@ -59,6 +76,43 @@ export default async function UsedVehicleDetail({
 
   return (
     <>
+      {/* Datos estructurados: Producto (usado) */}
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Product",
+          name: `${vehicle.brand} ${vehicle.model} ${vehicle.year ?? ""}`,
+          image: mainImage ? [absoluteImage(mainImage)] : undefined,
+          description:
+            vehicle.description ??
+            `${vehicle.brand} ${vehicle.model} usado en Formosa.`,
+          brand: { "@type": "Brand", name: vehicle.brand },
+          additionalProperty: [
+            { "@type": "PropertyValue", name: "Año", value: vehicle.year },
+            {
+              "@type": "PropertyValue",
+              name: "Kilómetros",
+              value: vehicle.mileage,
+            },
+            { "@type": "PropertyValue", name: "Combustible", value: vehicle.fuelType },
+            {
+              "@type": "PropertyValue",
+              name: "Transmisión",
+              value: vehicle.transmission,
+            },
+          ],
+          offers: {
+            "@type": "Offer",
+            priceCurrency: "ARS",
+            price: vehicle.price?.toString(),
+            availability: vehicle.available
+              ? "https://schema.org/InStock"
+              : "https://schema.org/SoldOut",
+            url: absoluteUrl(`/usados/${vehicle.slug}`),
+          },
+        }}
+      />
+
       {/* Back link */}
       <div className="border-b bg-zinc-950">
         <Container className="py-4">

@@ -6,6 +6,9 @@ export const metadata = {
   title: "Contacto",
   description:
     "Contactanos por consultas, cotizaciones o solicitudes de test drive.",
+  alternates: {
+    canonical: "/contacto",
+  },
 };
 
 export default function ContactoPage() {
