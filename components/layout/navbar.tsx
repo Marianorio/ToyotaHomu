@@ -46,6 +46,7 @@ const DEFAULT_ITEMS: NavItem[] = [
   },
   { label: "Promociones", href: "/promociones" },
   { label: "Financiación", href: "/financiacion" },
+  { label: "Comparador", href: "/comparador" },
   { label: "Usados", href: "/usados" },
   { label: "Postventa", href: "/postventa" },
   { label: "Nosotros", href: "/nosotros" },

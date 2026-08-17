@@ -6,6 +6,7 @@ import { formatARS } from "@/lib/format";
 import { Badge } from "@/components/ui/badge";
 import { BadgeHibrido, BadgeNuevo } from "@/components/ui/vehicle-badges";
 import { VehicleImage } from "@/components/vehicles/vehicle-image";
+import { CompareButton } from "@/components/vehicles/compare-button";
 import { WhatsAppButton } from "@/components/layout/whatsapp-button";
 import { WhatsAppMessages } from "@/lib/whatsapp";
 
@@ -81,6 +82,17 @@ export function VehicleCard({
           </div>
         )}
       </Link>
+
+      {/* Botón comparar (fuera del Link para no anidar interactivos) */}
+      <CompareButton
+        item={{
+          slug: vehicle.slug,
+          model: vehicle.model,
+          mainImage: vehicle.mainImage,
+        }}
+        variant="overlay"
+        className="absolute right-3 top-3"
+      />
 
       {/* Contenido */}
       <div

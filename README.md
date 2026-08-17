@@ -264,7 +264,7 @@ El proyecto está dividido en fases incrementales. Cada fase entrega valor funci
 | **Fase 3 — Páginas públicas** | ✅ Completada | Home completa (hero, quick actions, featured vehicles, financing preview, promotions, comparison CTA, after-sales, trade-in, test drive, concessionaire, location, final CTA), página de contacto, página de cotización, design system público. |
 | **Fase 4 — Vehículos usados** | ✅ Completada | Sección de usados con hero, beneficios de confianza, filtros por marca/año, cards con datos de kilometraje y estado, páginas de detalle con galería, especificaciones y CTAs. |
 | **Fase 5 — Panel admin (mini-CRM)** | ✅ Completada | Dashboard con métricas, gestión de vehículos (0km y usados), gestión de promociones, gestión de financiación, leads (mini-CRM con asignación a asesores), test drives, configuración del sitio (contacto, redes, colores, contenido del home). Panel protegido por roles (ADMIN/SELLER/SERVICE): el proxy solo hace el chequeo UX de cookie de sesión y la verificación fuerte de sesión/rol ocurre vía `auth()` en Node runtime. |
-| **Fase 6 — Funcionalidades avanzadas** | 🚧 Pendiente | Comparador de vehículos lado a lado, simulador de cuotas interactivo, notificaciones por email, integración con WhatsApp Business API, analytics de visitas, sitemap y SEO avanzado. |
+| **Fase 6 — Funcionalidades avanzadas** | 🚧 En desarrollo | Comparador de vehículos lado a lado (hasta 3, vía barra flotante y `/comparador`) ✅, simulador de cuotas interactivo (página `/financiacion`, sistema francés) ✅. Pendiente: notificaciones por email, integración con WhatsApp Business API, analytics de visitas, sitemap y SEO avanzado. |
 | **Fase 7 — Producción** | 🚧 Pendiente | Optimización de rendimiento (imágenes, caching, ISR), accesibilidad WCAG, migración a PostgreSQL, deploy a Vercel, monitoreo y logs. |
 | **Fase 8 — PWA / Mobile** | 🚧 Pendiente | Progressive Web App con service workers, instalación en mobile, offline mode para catálogo, notificaciones push. |
 | **Fase 9 — Multi-concesionaria** | 🚧 Pendiente | Soporte para múltiples sucursales, gestión por ubicación, inventario distribuido, geolocalización de vehículos cercanos. |
@@ -275,7 +275,7 @@ El proyecto está dividido en fases incrementales. Cada fase entrega valor funci
 | **Fase 14 — API pública e integraciones** | 🚧 Pendiente | REST/GraphQL API pública, webhooks, integración con portales (MercadoLibre, Zonaprop), sincronización con sistemas de gestión. |
 | **Fase 15 — Internacionalización** | 🚧 Pendiente | Soporte multi-idioma (es/en/pt), monedas múltiples, adaptación regional de contenido, SEO internacional (hreflang). |
 
-**Estado actual:** El proyecto está en la **Fase 5 completada**. Las fases 6 y 7 están pendientes de desarrollo.
+**Estado actual:** El proyecto está en la **Fase 5 completada** y la **Fase 6 en desarrollo** (comparador y simulador de cuotas listos). Las fases 6 (resto) y 7 están pendientes.
 
 ## Arquitectura y decisiones
 

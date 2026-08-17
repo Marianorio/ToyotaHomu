@@ -2,6 +2,7 @@ import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { DemoBadge } from "@/components/layout/DemoBadge";
 import { MobileBottomActions } from "@/components/layout/mobile-bottom-actions";
+import { CompareBar } from "@/components/vehicles/compare-bar";
 import { prisma } from "@/lib/db";
 
 /**
@@ -40,6 +41,7 @@ export default async function SiteLayout({
         legalText={settings?.legalText ?? undefined}
       />
       <MobileBottomActions />
+      <CompareBar />
       <DemoBadge />
     </div>
   );

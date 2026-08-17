@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { VehicleCard } from "@/components/vehicles/vehicle-card";
+import { CompareButton } from "@/components/vehicles/compare-button";
 import { cn } from "@/lib/utils";
 
 type VehicleDetailPageProps = {
@@ -254,7 +255,14 @@ export default async function VehicleDetailPage({
             </Link>
           </div>
 
-          <div className="flex justify-center pt-2">
+          <div className="flex flex-wrap items-center justify-center gap-2 pt-2">
+            <CompareButton
+              item={{
+                slug: vehicle.slug,
+                model: vehicle.model,
+                mainImage: vehicle.mainImage,
+              }}
+            />
             <a
               href={`https://wa.me/?text=${encodeURIComponent(`Hola, quiero consultar por el ${vehicle.brand} ${vehicle.model}`)}`}
               target="_blank"
