@@ -24,7 +24,7 @@ export function WhyChooseToyota() {
           <SlideUp delay={0.15}>
             <div className="max-w-xl text-center lg:text-left">
               <blockquote className="text-2xl font-medium italic leading-relaxed text-black sm:text-3xl lg:text-4xl">
-                "El éxito no se logra con lo que se sabe, sino con lo que se aprende cada día."
+                &quot;El éxito no se logra con lo que se sabe, sino con lo que se aprende cada día.&quot;
               </blockquote>
               <p className="mt-6 text-lg text-zinc-400">
                 — Kiichiro Toyoda, Fundador de Toyota

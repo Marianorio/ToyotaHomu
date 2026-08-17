@@ -2,13 +2,12 @@
  * Utilidades de formato para moneda ARS y datos de vehículos.
  */
 
-export function formatARS(
-  value: number | string | null | undefined,
-): string {
+export function formatARS(value: unknown): string {
   if (value === null || value === undefined || value === "") {
     return "Consultar precio";
   }
-  const num = typeof value === "string" ? Number(value) : value;
+  const num =
+    typeof value === "number" ? value : Number(String(value));
   if (Number.isNaN(num)) return "Consultar precio";
   return new Intl.NumberFormat("es-AR", {
     style: "currency",

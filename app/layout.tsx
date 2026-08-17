@@ -1,12 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/layout/navbar";
-import { Footer } from "@/components/layout/footer";
-import { DemoBadge } from "@/components/layout/DemoBadge";
-import { MobileBottomActions } from "@/components/layout/mobile-bottom-actions";
 import { Toaster } from "@/components/ui/sonner";
-import { prisma } from "@/lib/db";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -53,44 +48,19 @@ export const viewport: Viewport = {
 };
 
 /**
- * Layout global de la aplicación pública.
- * Shell: Navbar → Main (children) → Footer.
- * Los datos de contacto se passan como props a Navbar/Footer
- * cuando se conecten a SiteSettings (FASE 6+).
+ * Layout raíz compartido por todo el sitio (público y admin).
+ * Solo infraestructura global: HTML, fuentes, providers y toasts.
+ * El crome público (Navbar/Footer) vive en (site)/layout.tsx
+ * y el shell del panel (sidebar) en (admin)/layout.tsx.
  */
-export default async function RootLayout({ children }: LayoutProps<"/">) {
-  const settings = await prisma.siteSettings.findUnique({
-    where: { id: "single" },
-  });
-
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
       lang="es"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <Navbar
-          businessName={settings?.businessName || "Toyota Formosa"}
-          whatsappNumber={settings?.whatsapp ?? undefined}
-          logoUrl={settings?.logoUrl ?? "/img/toyotaLogoRojoConTexto.webp"}
-        />
-        <main id="main-content" className="flex-1">
-          {children}
-        </main>
-        <Footer
-          businessName={settings?.businessName || "Toyota Formosa"}
-          address={settings?.address ?? undefined}
-          phone={settings?.phone ?? undefined}
-          whatsapp={settings?.whatsapp ?? undefined}
-          email={settings?.email ?? undefined}
-          hours={settings?.hours ?? undefined}
-          instagram={settings?.instagram || undefined}
-          facebook={settings?.facebook || undefined}
-          tiktok={settings?.tiktok || undefined}
-          legalText={settings?.legalText ?? undefined}
-        />
-        <MobileBottomActions />
-        <DemoBadge />
+        {children}
         <Toaster />
       </body>
     </html>

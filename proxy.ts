@@ -1,11 +1,16 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { jwtVerify } from "jose";
 
 /**
- * Proxy de autenticación para la zona admin (Next 16 reemplaza middleware por proxy).
- * Edge-safe: decodifica el JWT de sesión de Auth.js sin depender de Prisma/bcrypt.
+ * Proxy de la zona admin (Next 16 reemplaza middleware por proxy).
+ *
+ * Estrategia de seguridad en dos capas:
+ * - Proxy: capa UX. Si no hay cookie de sesión de Auth.js, redirige a login
+ *   sin intentar descifrarla (la sesión es un JWT cifrado JWE y verificarlo
+ *   acá sería costoso y frágil).
+ * - Verificación real: el layout de (admin) y cada página/Server Action
+ *   usan `auth()`/`requireRole` (Node runtime) que autentican y validan rol.
  */
-export async function proxy(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   const isAdminArea = pathname.startsWith("/admin");
@@ -17,44 +22,11 @@ export async function proxy(request: NextRequest) {
 
   const cookieName = "__Secure-authjs.session-token";
   const fallbackName = "authjs.session-token";
-  let token = request.cookies.get(cookieName)?.value;
-  if (!token) {
-    token = request.cookies.get(fallbackName)?.value;
-  }
+  const hasCookies =
+    request.cookies.has(cookieName) || request.cookies.has(fallbackName);
 
-  if (!token) {
-    const url = new URL("/admin/login", request.url);
-    return NextResponse.redirect(url);
-  }
-
-  const secret = process.env.AUTH_SECRET;
-  if (!secret) {
+  if (!hasCookies) {
     return NextResponse.redirect(new URL("/admin/login", request.url));
-  }
-
-  let role: string | undefined;
-  try {
-    const { payload } = await jwtVerify(
-      token,
-      new TextEncoder().encode(secret),
-      { algorithms: ["HS256"] },
-    );
-    role = payload.role as string | undefined;
-  } catch {
-    const url = new URL("/admin/login", request.url);
-    return NextResponse.redirect(url);
-  }
-
-  // Rutas restringidas a admin
-  const adminOnly = [
-    "/admin/ase", // asesores
-    "/admin/configuracion",
-    "/admin/contenido-home",
-  ];
-  const requiresAdmin = adminOnly.some((p) => pathname.startsWith(p));
-
-  if (requiresAdmin && role !== "ADMIN") {
-    return NextResponse.redirect(new URL("/admin/dashboard", request.url));
   }
 
   return NextResponse.next();
