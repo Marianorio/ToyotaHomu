@@ -82,9 +82,7 @@ export function FeaturedVehicles({ vehicles }: FeaturedVehiclesProps) {
                 } as React.CSSProperties
               }
               onClick={() => setActive(i)}
-              onMouseEnter={() => setActive(i)}
               onKeyDown={(e) => handleKeyDown(e, i)}
-              onFocus={() => setActive(i)}
             >
               <div className="shadow" aria-hidden="true" />
               <div className="label">
