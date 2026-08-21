@@ -33,6 +33,7 @@ const NAV_COLUMNS: FooterColumn[] = [
     title: "Concesionaria",
     items: [
       { label: "Nosotros", href: "/nosotros" },
+      { label: "Sustentabilidad", href: "/sustentabilidad" },
       { label: "Contacto", href: "/contacto" },
       { label: "Ubicación", href: "/ubicacion" },
       { label: "Preguntas frecuentes", href: "/preguntas-frecuentes" },

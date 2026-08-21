@@ -39,18 +39,18 @@ export function FlipBook() {
   const total = 8;
 
   return (
-    <div id="libro" className="mx-auto w-full max-w-[560px] scroll-mt-24">
-      <div className="overflow-hidden rounded-2xl border bg-zinc-100 p-3 shadow-inner sm:p-4">
+    <div id="libro" className="mx-auto w-full max-w-[420px] scroll-mt-24">
+      <div className="overflow-hidden rounded-2xl border bg-white p-2 shadow-sm sm:p-3">
         {/* @ts-expect-error react-pageflip types mismatch with React 19 */}
         <HTMLFlipBook
-          width={400}
-          height={520}
+          width={360}
+          height={480}
           size="stretch"
-          minWidth={280}
-          maxWidth={560}
-          minHeight={360}
-          maxHeight={720}
-          maxShadowOpacity={0.35}
+          minWidth={300}
+          maxWidth={420}
+          minHeight={400}
+          maxHeight={560}
+          maxShadowOpacity={0.2}
           showCover
           mobileScrollSupport
           ref={bookRef as never}
@@ -58,10 +58,10 @@ export function FlipBook() {
           className="mx-auto"
           style={{ margin: "0 auto" }}
           drawShadow
-          flippingTime={700}
-          usePortrait={false}
+          flippingTime={650}
+          usePortrait
           startZIndex={0}
-          autoSize
+          autoSize={false}
           clickEventForward
           useMouseEvents
           swipeDistance={30}

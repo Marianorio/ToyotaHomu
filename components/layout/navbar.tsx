@@ -50,11 +50,13 @@ const DEFAULT_ITEMS: NavItem[] = [
   { label: "Usados", href: "/usados" },
   { label: "Postventa", href: "/postventa" },
   { label: "Nosotros", href: "/nosotros" },
+  { label: "Sustentabilidad", href: "/sustentabilidad" },
 ];
 
 const MOBILE_EXTRA_ITEMS = [
   { label: "Contacto", href: "/contacto", icon: <Phone className="size-4" /> },
   { label: "Servicios", href: "/servicios", icon: <Wrench className="size-4" /> },
+  { label: "Sustentabilidad", href: "/sustentabilidad", icon: <Shield className="size-4" /> },
 ];
 
 /**
