@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState, useCallback, forwardRef } from "react";
 import HTMLFlipBook from "react-pageflip";
 import { ChevronLeft, ChevronRight, Leaf, Droplets, Factory, Users } from "lucide-react";
 
@@ -13,26 +13,20 @@ type FlipBookRef = {
   };
 };
 
-function Page({
-  children,
-  cover = false,
-}: {
-  children: React.ReactNode;
-  cover?: boolean;
-}) {
-  return (
-    <div
-      className={
-        cover
-          ? "flex h-full flex-col overflow-hidden bg-white"
-          : "flex h-full flex-col overflow-hidden bg-white"
-      }
-      data-density={cover ? "hard" : "soft"}
-    >
-      <div className="flex h-full flex-col p-6 sm:p-7">{children}</div>
-    </div>
-  );
-}
+const Page = forwardRef<HTMLDivElement, { children: React.ReactNode; cover?: boolean }>(
+  function Page({ children, cover = false }, ref) {
+    return (
+      <div
+        ref={ref}
+        className="flex h-full flex-col overflow-hidden bg-white"
+        data-density={cover ? "hard" : "soft"}
+      >
+        <div className="flex h-full flex-col p-6 sm:p-7">{children}</div>
+      </div>
+    );
+  },
+);
+Page.displayName = "Page";
 
 export function FlipBook() {
   const bookRef = useRef<FlipBookRef>(null);
