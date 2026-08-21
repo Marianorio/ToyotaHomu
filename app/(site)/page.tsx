@@ -85,7 +85,7 @@ export default async function HomePage() {
         }}
       />
 
-      {/* Hero */}
+      {/* 1 — Hero: primera impresion + CTA principal */}
       <Hero
         title={home?.heroTitle || "Tu próximo Toyota está en Formosa."}
         subtitle={
@@ -101,15 +101,10 @@ export default async function HomePage() {
         }
       />
 
-      {/* Quick Actions */}
+      {/* 2 — Acciones rapidas: atajos inmediatos (cotizar / WhatsApp) */}
       <QuickActions whatsappNumber={settings?.whatsapp ?? undefined} />
 
-      {/* Why Choose Toyota */}
-      <WhyChooseToyota />
-
-      <SectionDivider variant="gradient" />
-
-      {/* Featured Vehicles */}
+      {/* 3 — Producto core: lo que el usuario vino a ver */}
       <FeaturedVehicles
         vehicles={featuredVehicles.map((v) => ({
           slug: v.slug,
@@ -126,7 +121,7 @@ export default async function HomePage() {
         }))}
       />
 
-      {/* Featured Vehicle Experience */}
+      {/* 4 — Experiencia inmersiva del destacado (profundiza el interes) */}
       <FeaturedVehicleExperience
         vehicle={
           featuredExpVehicle
@@ -143,7 +138,9 @@ export default async function HomePage() {
         }
       />
 
-      {/* Promotions */}
+      <SectionDivider variant="gradient" />
+
+      {/* 5 — Urgencia comercial: promociones vigentes */}
       <Promotions
         promotions={promotions.map((p) => ({
           id: p.id,
@@ -156,38 +153,39 @@ export default async function HomePage() {
         }))}
       />
 
-      <SectionDivider variant="gradient" />
-
-      {/* Financing Preview */}
+      {/* 6 — Financiacion: habilitar la compra (objecion principal) */}
       <FinancingPreview />
 
-      {/* Comparison CTA */}
-      <ComparisonCTA />
-
-      {/* After-Sales */}
-      <AfterSales />
-
-      <SectionDivider variant="gradient" />
-
-      {/* Trade-In */}
-      <TradeIn />
-
-      {/* Test Drive */}
+      {/* 7 — Lead experiencial: probar el auto (alta conversion) */}
       <TestDrive />
 
       <SectionDivider variant="gradient" />
 
-      {/* Concessionaire */}
+      {/* 8 — Ayuda a decidir: comparador */}
+      <ComparisonCTA />
+
+      {/* 9 — Confianza de marca: por que elegir Toyota */}
+      <WhyChooseToyota />
+
+      {/* 10 — Segundo funnel: canje de usado */}
+      <TradeIn />
+
+      <SectionDivider variant="gradient" />
+
+      {/* 11 — Confianza post-compra: servicio y garantia */}
+      <AfterSales />
+
+      {/* 12 — Institucional: concesionaria */}
       <Concessionaire
         address={settings?.address ?? undefined}
         phone={settings?.phone ?? undefined}
         hours={settings?.hours ?? undefined}
       />
 
-      {/* Location */}
+      {/* 13 — Visita: ubicacion y como llegar */}
       <Location />
 
-      {/* Final CTA */}
+      {/* 14 — Cierre: CTA final de conversion */}
       <FinalCTA />
 
       {/* DEMO indicator */}
