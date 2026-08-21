@@ -32,6 +32,19 @@ export function FeaturedVehicles({ vehicles }: FeaturedVehiclesProps) {
 
   const displayVehicles = vehicles.slice(0, 5);
 
+  const handleKeyDown = (e: React.KeyboardEvent, index: number) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      setActive(index);
+    } else if (e.key === "ArrowRight") {
+      e.preventDefault();
+      setActive((prev) => (prev + 1) % displayVehicles.length);
+    } else if (e.key === "ArrowLeft") {
+      e.preventDefault();
+      setActive((prev) => (prev - 1 + displayVehicles.length) % displayVehicles.length);
+    }
+  };
+
   return (
     <section className="bg-zinc-950 py-16 sm:py-20 lg:py-24">
       <Container>
@@ -45,10 +58,18 @@ export function FeaturedVehicles({ vehicles }: FeaturedVehiclesProps) {
           </div>
         </SlideUp>
 
-        <div className="featured-options">
+        <div
+          className="featured-options"
+          role="tablist"
+          aria-label="Modelos destacados"
+        >
           {displayVehicles.map((v, i) => (
             <div
               key={v.slug}
+              role="tab"
+              tabIndex={0}
+              aria-selected={active === i}
+              aria-label={`${v.model} — ${v.categoryName}`}
               className={cn(
                 "option",
                 active === i && "active",
@@ -61,13 +82,17 @@ export function FeaturedVehicles({ vehicles }: FeaturedVehiclesProps) {
                 } as React.CSSProperties
               }
               onClick={() => setActive(i)}
+              onMouseEnter={() => setActive(i)}
+              onKeyDown={(e) => handleKeyDown(e, i)}
+              onFocus={() => setActive(i)}
             >
-              <div className="shadow" />
+              <div className="shadow" aria-hidden="true" />
               <div className="label">
                 <div className="icon">
                   <Link
                     href={`/vehiculos/${v.slug}`}
                     aria-label={`Ver ${v.model}`}
+                    onClick={(e) => e.stopPropagation()}
                   >
                     <ArrowRight className="size-4" />
                   </Link>
@@ -79,6 +104,22 @@ export function FeaturedVehicles({ vehicles }: FeaturedVehiclesProps) {
                 </div>
               </div>
             </div>
+          ))}
+        </div>
+
+        {/* Indicadores mobile */}
+        <div className="mt-6 flex justify-center gap-2 sm:hidden" aria-hidden="true">
+          {displayVehicles.map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              onClick={() => setActive(i)}
+              className={cn(
+                "h-1.5 rounded-full transition-all duration-300",
+                active === i ? "w-6 bg-white" : "w-1.5 bg-white/30",
+              )}
+              aria-label={`Ir a ${displayVehicles[i].model}`}
+            />
           ))}
         </div>
       </Container>
