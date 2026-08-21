@@ -103,6 +103,7 @@ export default async function HomePage() {
 
       {/* 2 — Acciones rapidas: atajos inmediatos (cotizar / WhatsApp) */}
       <QuickActions whatsappNumber={settings?.whatsapp ?? undefined} />
+      <div className="h-8 bg-background" aria-hidden="true" />
 
       {/* 3 — Producto core: lo que el usuario vino a ver */}
       <FeaturedVehicles

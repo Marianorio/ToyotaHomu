@@ -39,11 +39,11 @@ export function QuickActions({ whatsappNumber }: QuickActionsProps) {
   return (
     <section
       id="quick-actions"
-      className="relative z-20 bg-background"
+      className="relative -mt-8 z-20"
       aria-label="Accesos rápidos"
     >
-      <Container className="-mt-8">
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 pb-8">
+      <Container>
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
           {actions.map((action) => {
             const Icon = action.icon;
             const href =

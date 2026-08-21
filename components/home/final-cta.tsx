@@ -5,7 +5,7 @@ import { SlideUp } from "@/components/ui/motion";
 
 export function FinalCTA() {
   return (
-    <section className="bg-primary py-16 pb-28 sm:py-20 sm:pb-28 lg:py-24">
+    <section className="bg-primary py-16 sm:py-20 lg:py-24">
       <Container>
         <div className="flex flex-col items-center text-center">
           <SlideUp>
