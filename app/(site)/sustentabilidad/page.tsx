@@ -17,6 +17,7 @@ import { ConversionBar } from "@/components/ui/conversion-bar";
 import { SlideUp } from "@/components/ui/motion";
 import { buttonVariants } from "@/components/ui/button";
 import { FlipBook } from "@/components/sustentabilidad/flip-book";
+import { ReportActions } from "@/components/sustentabilidad/report-actions";
 
 export const metadata = {
   title: "Reportes de Sustentabilidad",
@@ -115,18 +116,7 @@ export default function SustentabilidadPage() {
                   Tu PDF de x paginas se integra sin cambiar el layout — cada pagina se vuelve una hoja.
                 </li>
               </ul>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <a href="#libro" className={buttonVariants({ variant: "default", size: "lg" })}>
-                  <Eye className="size-4" aria-hidden="true" />
-                  Abrir libro
-                </a>
-                <Link href="#archivo" className={buttonVariants({ variant: "outline", size: "lg" })}>
-                  Ver archivo
-                </Link>
-              </div>
-              <p className="mt-3 font-mono text-xs text-muted-foreground">
-                Demo interactiva · 8 paginas ilustrativas · Reemplaza por tu PDF real
-              </p>
+              <ReportActions />
             </div>
 
             <FlipBook />

@@ -11,6 +11,8 @@ import {
   Shield,
   Wrench,
   Phone,
+  Users,
+  Leaf,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
@@ -36,7 +38,7 @@ const DEFAULT_ITEMS: NavItem[] = [
     label: "Vehículos",
     href: "/vehiculos",
     children: [
-      { label: "Autos", href: "/vehiculos?cat=autos", icon: <Car className="size-4" /> },
+      { label: "Autos", href: "/vehiculos", icon: <Car className="size-4" /> },
       { label: "SUVs", href: "/vehiculos?cat=suv", icon: <Car className="size-4" /> },
       { label: "Pick-Ups", href: "/vehiculos?cat=pickup", icon: <Car className="size-4" /> },
       { label: "Comerciales", href: "/vehiculos?cat=comercial", icon: <Car className="size-4" /> },
@@ -49,14 +51,19 @@ const DEFAULT_ITEMS: NavItem[] = [
   { label: "Comparador", href: "/comparador" },
   { label: "Usados", href: "/usados" },
   { label: "Postventa", href: "/postventa" },
-  { label: "Nosotros", href: "/nosotros" },
-  { label: "Sustentabilidad", href: "/sustentabilidad" },
+  {
+    label: "Nosotros",
+    href: "/nosotros",
+    children: [
+      { label: "Sobre nosotros", href: "/nosotros", icon: <Users className="size-4" /> },
+      { label: "Sustentabilidad", href: "/sustentabilidad", icon: <Leaf className="size-4" /> },
+    ],
+  },
 ];
 
 const MOBILE_EXTRA_ITEMS = [
   { label: "Contacto", href: "/contacto", icon: <Phone className="size-4" /> },
   { label: "Servicios", href: "/servicios", icon: <Wrench className="size-4" /> },
-  { label: "Sustentabilidad", href: "/sustentabilidad", icon: <Shield className="size-4" /> },
 ];
 
 /**
@@ -162,8 +169,8 @@ export function Navbar({
                     {item.label}
                     <ChevronDown className="size-3.5" aria-hidden="true" />
                   </button>
-                  {/* Dropdown mega-menu prep */}
-                  <div className="invisible absolute left-0 top-full z-50 mt-1 min-w-[220px] rounded-xl border bg-card p-2 shadow-xl opacity-0 transition-all group-hover:visible group-hover:opacity-100">
+                  {/* Dropdown */}
+                  <div className="invisible absolute left-0 top-full z-50 mt-1 min-w-[220px] rounded-md border bg-card p-2 shadow-xl opacity-0 transition-all group-hover:visible group-hover:opacity-100">
                     {item.children.map((child) => (
                       <Link
                         key={child.href}

@@ -28,7 +28,7 @@ const Page = forwardRef<HTMLDivElement, { children: React.ReactNode; cover?: boo
 );
 Page.displayName = "Page";
 
-export function FlipBook() {
+export function FlipBook({ variant = "inline" }: { variant?: "inline" | "fullscreen" }) {
   const bookRef = useRef<FlipBookRef>(null);
   const [page, setPage] = useState(0);
 
@@ -37,19 +37,29 @@ export function FlipBook() {
   }, []);
 
   const total = 8;
+  const isFullscreen = variant === "fullscreen";
 
   return (
-    <div id="libro" className="mx-auto w-full max-w-[420px] scroll-mt-24">
-      <div className="overflow-hidden rounded-2xl border bg-white p-2 shadow-sm sm:p-3">
+    <div
+      id={isFullscreen ? undefined : "libro"}
+      className={isFullscreen ? "w-full" : "mx-auto w-full max-w-[420px] scroll-mt-24"}
+    >
+      <div
+        className={
+          isFullscreen
+            ? "overflow-hidden rounded-lg bg-white"
+            : "overflow-hidden rounded-2xl border bg-white p-2 shadow-sm sm:p-3"
+        }
+      >
         {/* @ts-expect-error react-pageflip types mismatch with React 19 */}
         <HTMLFlipBook
-          width={360}
-          height={480}
+          width={isFullscreen ? 420 : 360}
+          height={isFullscreen ? 560 : 480}
           size="stretch"
-          minWidth={300}
-          maxWidth={420}
-          minHeight={400}
-          maxHeight={560}
+          minWidth={isFullscreen ? 320 : 300}
+          maxWidth={isFullscreen ? 900 : 420}
+          minHeight={isFullscreen ? 460 : 400}
+          maxHeight={isFullscreen ? 700 : 560}
           maxShadowOpacity={0.2}
           showCover
           mobileScrollSupport
@@ -59,7 +69,7 @@ export function FlipBook() {
           style={{ margin: "0 auto" }}
           drawShadow
           flippingTime={650}
-          usePortrait
+          usePortrait={!isFullscreen}
           startZIndex={0}
           autoSize={false}
           clickEventForward
