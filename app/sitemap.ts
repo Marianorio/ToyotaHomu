@@ -14,6 +14,16 @@ const STATIC_ROUTES: { path: string; priority: number; freq: Freq }[] = [
   { path: "/comparador", priority: 0.7, freq: "monthly" },
   { path: "/cotizar", priority: 0.8, freq: "monthly" },
   { path: "/contacto", priority: 0.7, freq: "monthly" },
+  { path: "/test-drive", priority: 0.8, freq: "monthly" },
+  { path: "/promociones", priority: 0.7, freq: "weekly" },
+  { path: "/postventa", priority: 0.6, freq: "monthly" },
+  { path: "/servicios", priority: 0.6, freq: "monthly" },
+  { path: "/nosotros", priority: 0.5, freq: "yearly" },
+  { path: "/ubicacion", priority: 0.5, freq: "yearly" },
+  { path: "/privacidad", priority: 0.2, freq: "yearly" },
+  { path: "/terminos", priority: 0.2, freq: "yearly" },
+  { path: "/preguntas-frecuentes", priority: 0.5, freq: "monthly" },
+  { path: "/sustentabilidad", priority: 0.5, freq: "yearly" },
   { path: "/design-system", priority: 0.2, freq: "yearly" },
 ];
 
