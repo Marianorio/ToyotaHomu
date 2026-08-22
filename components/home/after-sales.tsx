@@ -1,8 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import { Wrench, Settings, Package, ShoppingCart, ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { SectionHeader } from "@/components/ui/section";
-import { SlideUp } from "@/components/ui/motion";
+import { SlideUp, Reveal, StaggerGroup, StaggerItem, Scale } from "@/components/ui/motion";
 
 const services = [
   {
@@ -38,18 +40,20 @@ export function AfterSales() {
   return (
     <section className="py-16 sm:py-20 lg:py-24">
       <Container>
-        <SectionHeader
-          eyebrow="Postventa"
-          title="Tu Toyota, siempre en buenas manos"
-          description="Servicio oficial, repuestos originales y atención personalizada."
-          action={{ label: "Conocé nuestra postventa", href: "/postventa" }}
-        />
+        <Reveal>
+          <SectionHeader
+            eyebrow="Postventa"
+            title="Tu Toyota, siempre en buenas manos"
+            description="Servicio oficial, repuestos originales y atención personalizada."
+            action={{ label: "Conocé nuestra postventa", href: "/postventa" }}
+          />
+        </Reveal>
 
         <div className="mt-8 grid gap-6 lg:grid-cols-3">
           {/* Featured service */}
           {featured && (
-            <SlideUp className="lg:col-span-1">
-              <div className="flex h-full flex-col rounded-2xl border bg-card p-6">
+            <Scale className="lg:col-span-1">
+              <div className="flex h-full flex-col rounded-2xl border bg-card p-6 transition-all hover:shadow-lg hover:-translate-y-1 hover:border-primary/10">
                 <div className="flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary">
                   <featured.icon className="size-6" aria-hidden="true" />
                 </div>
@@ -64,15 +68,15 @@ export function AfterSales() {
                   Más información <ArrowRight className="size-3.5" aria-hidden="true" />
                 </Link>
               </div>
-            </SlideUp>
+            </Scale>
           )}
 
           {/* Secondary services */}
           <div className="flex flex-col gap-6 lg:col-span-2">
-            <div className="grid gap-6 sm:grid-cols-2">
-              {secondary.map((s, i) => (
-                <SlideUp key={s.title} delay={i * 0.08}>
-                  <div className="flex items-start gap-4 rounded-2xl border bg-card p-5">
+            <StaggerGroup className="grid gap-6 sm:grid-cols-2">
+              {secondary.map((s) => (
+                <StaggerItem key={s.title}>
+                  <div className="flex items-start gap-4 rounded-2xl border bg-card p-5 transition-all hover:shadow-md hover:-translate-y-0.5 hover:border-primary/10">
                     <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-muted text-muted-foreground">
                       <s.icon className="size-5" aria-hidden="true" />
                     </div>
@@ -83,9 +87,9 @@ export function AfterSales() {
                       </p>
                     </div>
                   </div>
-                </SlideUp>
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerGroup>
           </div>
         </div>
       </Container>

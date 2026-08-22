@@ -1,7 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import { Car, FileText, TestTube, MessageCircle } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { generateWhatsAppUrl } from "@/lib/whatsapp";
+import { StaggerGroup, StaggerItem } from "@/components/ui/motion";
 
 const actions = [
   {
@@ -43,7 +46,7 @@ export function QuickActions({ whatsappNumber }: QuickActionsProps) {
       aria-label="Accesos rápidos"
     >
       <Container>
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+        <StaggerGroup className="grid grid-cols-2 gap-3 sm:grid-cols-4">
           {actions.map((action) => {
             const Icon = action.icon;
             const href =
@@ -55,7 +58,7 @@ export function QuickActions({ whatsappNumber }: QuickActionsProps) {
                 : action.href!;
 
             const content = (
-              <div className="flex flex-col items-center gap-2.5 rounded-xl border bg-card p-5 text-center shadow-sm transition-all hover:shadow-md hover:-translate-y-0.5">
+              <div className="flex flex-col items-center gap-2.5 rounded-xl border bg-card p-5 text-center shadow-sm transition-all hover:shadow-lg hover:-translate-y-1 hover:border-primary/20">
                 <div className={`flex size-11 items-center justify-center rounded-full ${action.color}`}>
                   <Icon className="size-5" aria-hidden="true" />
                 </div>
@@ -63,26 +66,24 @@ export function QuickActions({ whatsappNumber }: QuickActionsProps) {
               </div>
             );
 
-            if (action.external) {
-              return (
-                <a
-                  key={action.label}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {content}
-                </a>
-              );
-            }
-
-            return (
+            const wrapper = action.external ? (
+              <a
+                key={action.label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {content}
+              </a>
+            ) : (
               <Link key={action.label} href={href}>
                 {content}
               </Link>
             );
+
+            return <StaggerItem key={action.label}>{wrapper}</StaggerItem>;
           })}
-        </div>
+        </StaggerGroup>
       </Container>
     </section>
   );

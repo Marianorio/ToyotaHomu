@@ -1,24 +1,24 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { buttonVariants } from "@/components/ui/button";
-import { SlideUp } from "@/components/ui/motion";
+import { SlideUp, Reveal, Scale } from "@/components/ui/motion";
 
 export function FinalCTA() {
   return (
     <section className="bg-primary py-16 sm:py-20 lg:py-24">
       <Container>
         <div className="flex flex-col items-center text-center">
-          <SlideUp>
+          <Reveal>
             <h2 className="text-h2 text-white">
               ¿Listo para encontrar tu próximo Toyota?
             </h2>
-          </SlideUp>
+          </Reveal>
           <SlideUp delay={0.1}>
             <p className="mt-3 max-w-lg text-body-lead text-white/80">
               Explorá nuestra gama, cotizá y hacete con el tuyo.
             </p>
           </SlideUp>
-          <SlideUp delay={0.2}>
+          <Scale delay={0.18}>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <Link
                 href="/vehiculos"
@@ -43,7 +43,7 @@ export function FinalCTA() {
                 Cotizar
               </Link>
             </div>
-          </SlideUp>
+          </Scale>
         </div>
       </Container>
     </section>

@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 import { Container } from "@/components/ui/container";
-import { Fade, SlideUp } from "@/components/ui/motion";
+import { Fade, SlideUp, Reveal, BlurIn } from "@/components/ui/motion";
 
 type HeroProps = {
   eyebrow?: string;
@@ -35,22 +35,24 @@ export function Hero({
       className="relative flex min-h-[85vh] items-center overflow-hidden bg-zinc-950"
       aria-label="Hero principal"
     >
-      {/* Background image (volante demo) */}
-      <Image
-        src="/img/ToyotaManubrio.webp"
-        alt=""
-        fill
-        priority
-        sizes="100vw"
-        className="absolute inset-0 object-cover opacity-25"
-        aria-hidden="true"
-      />
+      {/* Background image con parallax sutil */}
+      <BlurIn className="absolute inset-0">
+        <Image
+          src="/img/ToyotaManubrio.webp"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover opacity-25"
+          aria-hidden="true"
+        />
+      </BlurIn>
 
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-zinc-950 via-zinc-900/80 to-zinc-950" />
 
-      {/* Red accent line */}
-      <div className="absolute left-0 top-1/2 h-32 w-1 -translate-y-1/2 bg-primary" aria-hidden="true" />
+      {/* Red accent line con reveal */}
+      <Reveal className="absolute left-0 top-1/2 h-32 w-1 -translate-y-1/2 bg-primary" aria-hidden="true" />
 
       <Container className="relative z-10 py-20">
         <div className="max-w-2xl">
@@ -59,14 +61,14 @@ export function Hero({
             <span className="text-eyebrow text-red-400">{eyebrow}</span>
           </Fade>
 
-          {/* Title */}
-          <SlideUp delay={0.1}>
+          {/* Title con reveal premium */}
+          <Reveal delay={0.1}>
             <h1 className="mt-4 text-display text-white">{title}</h1>
-          </SlideUp>
+          </Reveal>
 
           {/* Subtitle */}
           {subtitle && (
-            <SlideUp delay={0.2}>
+            <SlideUp delay={0.22}>
               <p className="mt-5 max-w-lg text-body-lead text-zinc-300">
                 {subtitle}
               </p>
@@ -74,7 +76,7 @@ export function Hero({
           )}
 
           {/* CTAs */}
-          <SlideUp delay={0.3}>
+          <SlideUp delay={0.32}>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link
                 href={ctaHref}

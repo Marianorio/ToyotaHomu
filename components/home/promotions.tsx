@@ -1,8 +1,11 @@
+"use client";
+
 import Link from "next/link";
 import { Tag, ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { SectionHeader } from "@/components/ui/section";
 import { Badge } from "@/components/ui/badge";
+import { SlideUp, StaggerGroup, StaggerItem } from "@/components/ui/motion";
 
 type Promotion = {
   id: string;
@@ -24,20 +27,22 @@ export function Promotions({ promotions }: PromotionsProps) {
   return (
     <section className="py-16 sm:py-20 lg:py-24">
       <Container>
-        <SectionHeader
-          eyebrow="Ofertas"
-          title="Promociones"
-          description="Aprovechá las mejores condiciones para tu próximo Toyota."
-          action={{ label: "Ver promociones", href: "/promociones" }}
-        />
+        <SlideUp>
+          <SectionHeader
+            eyebrow="Ofertas"
+            title="Promociones"
+            description="Aprovechá las mejores condiciones para tu próximo Toyota."
+            action={{ label: "Ver promociones", href: "/promociones" }}
+          />
+        </SlideUp>
 
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <StaggerGroup className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {promotions.slice(0, 3).map((promo) => (
-            <Link
-              key={promo.id}
-              href={`/promociones#${promo.slug}`}
-              className="group rounded-2xl border bg-card p-6 transition-all hover:shadow-lg hover:-translate-y-0.5"
-            >
+            <StaggerItem key={promo.id}>
+              <Link
+                href={`/promociones#${promo.slug}`}
+                className="group flex h-full flex-col rounded-2xl border bg-card p-6 transition-all hover:shadow-xl hover:-translate-y-1 hover:border-primary/20"
+              >
               <div className="flex items-start justify-between">
                 <Tag className="size-5 text-primary" aria-hidden="true" />
                 {promo.vehicle && (
@@ -58,9 +63,10 @@ export function Promotions({ promotions }: PromotionsProps) {
               <div className="mt-4 flex items-center gap-1 text-sm font-medium text-primary group-hover:gap-2 transition-all">
                 Ver detalles <ArrowRight className="size-3.5" aria-hidden="true" />
               </div>
-            </Link>
+              </Link>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerGroup>
       </Container>
     </section>
   );

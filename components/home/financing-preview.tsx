@@ -2,7 +2,7 @@ import * as React from "react";
 import Link from "next/link";
 import { Calculator, ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/container";
-import { SlideUp } from "@/components/ui/motion";
+import { SlideUp, Reveal, Scale } from "@/components/ui/motion";
 
 export function FinancingPreview() {
   return (
@@ -14,11 +14,11 @@ export function FinancingPreview() {
             <SlideUp>
               <span className="text-eyebrow text-red-400">Financiación</span>
             </SlideUp>
-            <SlideUp delay={0.1}>
+            <Reveal delay={0.1}>
               <h2 className="mt-3 text-h2 text-white">
                 Encontrá una forma de llegar a tu próximo Toyota
               </h2>
-            </SlideUp>
+            </Reveal>
             <SlideUp delay={0.2}>
               <p className="mt-4 max-w-md text-body-lead text-zinc-300">
                 Planes de financiación flexibles pensados para vos.
@@ -58,8 +58,8 @@ export function FinancingPreview() {
           </div>
 
           {/* Preview card */}
-          <SlideUp delay={0.15}>
-            <div className="rounded-2xl border border-zinc-700 bg-zinc-800/50 p-8">
+          <Scale delay={0.18}>
+            <div className="rounded-2xl border border-zinc-700 bg-zinc-800/50 p-8 shadow-2xl transition-all hover:border-zinc-600 hover:shadow-primary/10">
               <h3 className="text-lg font-semibold text-white">
                 ¿Querés saber cuánto podrías pagar?
               </h3>
@@ -99,7 +99,7 @@ export function FinancingPreview() {
                 </Link>
               </div>
             </div>
-          </SlideUp>
+          </Scale>
         </div>
       </Container>
     </section>

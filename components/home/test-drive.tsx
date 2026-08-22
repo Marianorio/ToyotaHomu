@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Container } from "@/components/ui/container";
-import { SlideUp } from "@/components/ui/motion";
+import { SlideUp, Reveal, Scale } from "@/components/ui/motion";
 
 export function TestDrive() {
   return (
@@ -9,26 +9,26 @@ export function TestDrive() {
       <Container>
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
           {/* Visual */}
-          <SlideUp>
-            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-zinc-100 dark:bg-zinc-800">
+          <Scale>
+            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-zinc-100 dark:bg-zinc-800 shadow-xl">
               <Image
                 src="/img/YarisConFondoVertical.webp"
                 alt="Experiencia de prueba de manejo"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover"
+                className="object-cover transition-transform duration-700 hover:scale-[1.02]"
               />
             </div>
-          </SlideUp>
+          </Scale>
 
           {/* Text */}
           <div>
             <SlideUp delay={0.1}>
               <span className="text-eyebrow text-primary">Test Drive</span>
             </SlideUp>
-            <SlideUp delay={0.15}>
+            <Reveal delay={0.15}>
               <h2 className="mt-3 text-h2">Sentí la diferencia</h2>
-            </SlideUp>
+            </Reveal>
             <SlideUp delay={0.2}>
               <p className="mt-4 max-w-md text-body-lead text-muted-foreground">
                 Elegí un modelo y solicitá tu test drive. La mejor manera

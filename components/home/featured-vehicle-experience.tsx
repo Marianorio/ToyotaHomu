@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/container";
-import { SlideUp } from "@/components/ui/motion";
+import { SlideUp, Reveal, Scale } from "@/components/ui/motion";
 import { VehicleImage } from "@/components/vehicles/vehicle-image";
 
 type FeaturedVehicle = {
@@ -36,11 +36,11 @@ export function FeaturedVehicleExperience({
             <SlideUp>
               <span className="text-eyebrow text-red-400">Experiencia</span>
             </SlideUp>
-            <SlideUp delay={0.1}>
+            <Reveal delay={0.08}>
               <h2 className="mt-3 text-h1 text-white">{vehicle.model}</h2>
-            </SlideUp>
+            </Reveal>
             {vehicle.description && (
-              <SlideUp delay={0.2}>
+              <SlideUp delay={0.18}>
                 <p className="mt-4 max-w-md text-body-lead text-zinc-300">
                   {vehicle.description}
                 </p>
@@ -68,8 +68,8 @@ export function FeaturedVehicleExperience({
           </div>
 
           {/* Image */}
-          <SlideUp delay={0.15}>
-            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-zinc-800">
+          <Scale delay={0.2}>
+            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-zinc-800 shadow-2xl">
               <VehicleImage
                 src={{
                   corolla: "/img/CorollaConFondoVertical.webp",
@@ -81,10 +81,10 @@ export function FeaturedVehicleExperience({
                 }[vehicle.slug] ?? vehicle.mainImage}
                 alt={vehicle.model}
                 priority
-                className="rounded-2xl"
+                className="rounded-2xl transition-transform duration-700 hover:scale-[1.02]"
               />
             </div>
-          </SlideUp>
+          </Scale>
         </div>
       </Container>
     </section>

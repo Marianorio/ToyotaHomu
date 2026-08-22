@@ -1,5 +1,5 @@
 import { Container } from "@/components/ui/container";
-import { SlideUp } from "@/components/ui/motion";
+import { SlideUp, Reveal, Scale } from "@/components/ui/motion";
 import { isDemoMode } from "@/lib/demo";
 
 export function Location() {
@@ -8,8 +8,8 @@ export function Location() {
       <Container>
         <div className="grid gap-10 lg:grid-cols-2">
           {/* Map placeholder */}
-          <SlideUp>
-            <div className="flex aspect-[4/3] items-center justify-center overflow-hidden rounded-2xl border bg-muted">
+          <Scale>
+            <div className="flex aspect-[4/3] items-center justify-center overflow-hidden rounded-2xl border bg-muted shadow-lg">
               <div className="flex flex-col items-center gap-3 text-center text-muted-foreground">
                 <svg
                   viewBox="0 0 24 24"
@@ -23,19 +23,17 @@ export function Location() {
                   <path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
                 </svg>
                 <span className="text-sm">
-                  {isDemoMode
-                    ? "Mapa placeholder — Demo"
-                    : "Mapa interactivo"}
+                  {isDemoMode ? "Mapa placeholder — Demo" : "Mapa interactivo"}
                 </span>
               </div>
             </div>
-          </SlideUp>
+          </Scale>
 
           {/* Info */}
           <div>
-            <SlideUp delay={0.1}>
+            <Reveal delay={0.1}>
               <h2 className="text-h2">Encontranos en Formosa</h2>
-            </SlideUp>
+            </Reveal>
             <SlideUp delay={0.15}>
               <p className="mt-3 text-body-lead text-muted-foreground">
                 Visitá nuestras instalaciones y conocé toda la gama de

@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRightLeft } from "lucide-react";
 import { Container } from "@/components/ui/container";
-import { SlideUp } from "@/components/ui/motion";
+import { SlideUp, Reveal, Scale } from "@/components/ui/motion";
 
 export function TradeIn() {
   return (
@@ -21,28 +21,25 @@ export function TradeIn() {
 
       <Container className="relative">
         <div className="flex flex-col items-center text-center">
-          <SlideUp>
+          <Scale>
             <div className="flex size-14 items-center justify-center rounded-full bg-primary/10 text-primary">
               <ArrowRightLeft className="size-7" aria-hidden="true" />
             </div>
-          </SlideUp>
-          <SlideUp delay={0.1}>
+          </Scale>
+          <Reveal delay={0.08}>
             <h2 className="mt-5 text-h2 text-white">
               Tu usado puede acercarte a tu próximo Toyota
             </h2>
-          </SlideUp>
-          <SlideUp delay={0.2}>
+          </Reveal>
+          <SlideUp delay={0.14}>
             <p className="mt-3 max-w-lg text-body-lead text-zinc-300">
-              Tasá tu vehículo actual y descubrí cuánto podés aplicar
-              como parte de tu nueva compra.
+              Tasá tu vehículo actual y descubrí cuánto podés aplicar como parte de tu nueva compra.
             </p>
           </SlideUp>
-          <SlideUp delay={0.25}>
-            <p className="mt-2 text-sm text-zinc-500">
-              Datos ilustrativos — Demo.
-            </p>
+          <SlideUp delay={0.18}>
+            <p className="mt-2 text-sm text-zinc-500">Datos ilustrativos — Demo.</p>
           </SlideUp>
-          <SlideUp delay={0.3}>
+          <SlideUp delay={0.24}>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <Link
                 href="/usados"

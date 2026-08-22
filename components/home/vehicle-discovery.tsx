@@ -1,6 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import { Container } from "@/components/ui/container";
-import { SlideUp } from "@/components/ui/motion";
+import { SlideUp, Reveal, Scale } from "@/components/ui/motion";
 
 export function WhyChooseToyota() {
   return (
@@ -8,7 +10,7 @@ export function WhyChooseToyota() {
       <Container>
         <div className="flex flex-col items-center gap-12 lg:flex-row lg:gap-16">
           {/* Logo */}
-          <SlideUp>
+          <Scale>
             <div className="relative h-48 w-48 sm:h-64 sm:w-64 lg:h-80 lg:w-80">
               <Image
                 src="/img/toyotaLogo.webp"
@@ -18,19 +20,21 @@ export function WhyChooseToyota() {
                 priority
               />
             </div>
-          </SlideUp>
+          </Scale>
 
           {/* Quote */}
-          <SlideUp delay={0.15}>
-            <div className="max-w-xl text-center lg:text-left">
+          <div className="max-w-xl text-center lg:text-left">
+            <Reveal>
               <blockquote className="text-2xl font-medium italic leading-relaxed text-black sm:text-3xl lg:text-4xl">
                 &quot;El éxito no se logra con lo que se sabe, sino con lo que se aprende cada día.&quot;
               </blockquote>
+            </Reveal>
+            <SlideUp delay={0.2}>
               <p className="mt-6 text-lg text-zinc-400">
                 — Kiichiro Toyoda, Fundador de Toyota
               </p>
-            </div>
-          </SlideUp>
+            </SlideUp>
+          </div>
         </div>
       </Container>
     </section>
