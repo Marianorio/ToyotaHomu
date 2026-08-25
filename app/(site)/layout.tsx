@@ -3,6 +3,7 @@ import { Footer } from "@/components/layout/footer";
 import { DemoBadge } from "@/components/layout/DemoBadge";
 import { MobileBottomActions } from "@/components/layout/mobile-bottom-actions";
 import { CompareBar } from "@/components/vehicles/compare-bar";
+import { AnalyticsTracker } from "@/components/analytics/analytics-tracker";
 import { prisma } from "@/lib/db";
 
 /**
@@ -43,6 +44,7 @@ export default async function SiteLayout({
       <MobileBottomActions />
       <CompareBar />
       <DemoBadge />
+      <AnalyticsTracker />
     </div>
   );
 }

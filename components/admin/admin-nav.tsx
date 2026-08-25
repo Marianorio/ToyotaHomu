@@ -14,6 +14,7 @@ import {
   UserRound,
   Settings,
   Home,
+  BarChart3,
   type LucideIcon,
 } from "lucide-react";
 
@@ -32,6 +33,7 @@ export const NAV_ITEMS: NavItem[] = [
   { href: "/admin/financiacion", label: "Financiación", icon: Calculator },
   { href: "/admin/leads", label: "Leads (CRM)", icon: Users },
   { href: "/admin/test-drives", label: "Test drives", icon: CalendarCheck },
+  { href: "/admin/analytics", label: "Analytics", icon: BarChart3 },
   { href: "/admin/asesores", label: "Asesores", icon: UserRound, adminOnly: true },
   { href: "/admin/contenido-home", label: "Contenido Home", icon: Home, adminOnly: true },
   { href: "/admin/configuracion", label: "Configuración", icon: Settings, adminOnly: true },

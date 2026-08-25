@@ -463,6 +463,24 @@ model SiteSettings {
 }
 
 // ---------------------------------------------------------------------------
+// Analytics de vistas (privacidad: IP hasheada, sin cookies)
+// ---------------------------------------------------------------------------
+
+model PageView {
+  id          String   @id @default(cuid())
+  path        String
+  vehicleSlug String?
+  referrer    String?
+  userAgent   String?
+  ipHash      String?
+  createdAt   DateTime @default(now())
+
+  @@index([path])
+  @@index([vehicleSlug])
+  @@index([createdAt])
+}
+
+// ---------------------------------------------------------------------------
 // Auditoría básica de operaciones administrativas
 // ---------------------------------------------------------------------------
 
