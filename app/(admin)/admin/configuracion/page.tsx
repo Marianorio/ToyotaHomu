@@ -1,5 +1,6 @@
 import { AdminPageHeader } from "@/components/admin/admin-page-header";
 import { SettingsForm } from "@/components/admin/settings-form";
+import { EmailTestForm } from "@/components/admin/email-test-form";
 import { prisma } from "@/lib/db";
 import { requireAdminPage } from "@/lib/session";
 
@@ -39,6 +40,7 @@ export default async function AdminConfiguracionPage() {
             : undefined
         }
       />
+      <EmailTestForm defaultTo={settings?.email ?? undefined} />
     </div>
   );
 }
